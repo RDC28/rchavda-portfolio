@@ -1,0 +1,155 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { AnimatePresence } from 'framer-motion';
+import Lenis from 'lenis';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import ProjectCard from './components/ProjectCard';
+import ProjectModal from './components/ProjectModal';
+import Footer from './components/Footer';
+import About from './components/About';
+import Skills from './components/Skills';
+
+function App() {
+  const [dsProjects, setDsProjects] = useState([]);
+  const [daProjects, setDaProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    // Initialize Lenis for smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    window.lenis = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Fetch data
+    fetch('/data/ds-projects.json')
+      .then(response => response.json())
+      .then(data => setDsProjects(data))
+      .catch(error => console.error('Error fetching DS projects:', error));
+
+    fetch('/data/da-projects.json')
+      .then(response => response.json())
+      .then(data => setDaProjects(data))
+      .catch(error => console.error('Error fetching DA projects:', error));
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  const openModal = (project) => {
+    setSelectedProject(project);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+  };
+
+  const renderProjectSection = (projects) => {
+    const isInfinite = projects.length > 3;
+
+    if (isInfinite) {
+      // Infinite Carousel
+      return (
+        <div className="projects-carousel-container">
+          <button className="section-nav-btn prev" onClick={(e) => {
+            e.target.parentElement.querySelector('.projects-carousel').scrollBy({ left: -400, behavior: 'smooth' });
+          }}>&#10094;</button>
+
+          <div className="projects-carousel">
+            {/* Render list multiple times for "infinite" feel */}
+            {[...projects, ...projects, ...projects, ...projects].map((project, index) => (
+              <ProjectCard key={`${project.id}-${index}`} project={project} onClick={setSelectedProject} />
+            ))}
+          </div>
+
+          <button className="section-nav-btn next" onClick={(e) => {
+            e.target.parentElement.querySelector('.projects-carousel').scrollBy({ left: 400, behavior: 'smooth' });
+          }}>&#10095;</button>
+        </div>
+      );
+    } else {
+      // Static Centered Horizontal Layout (for <= 3 items)
+      // Uses the same horizontal layout but centered and without arrows/looping
+      return (
+        <div className="projects-carousel-container">
+          <div className="projects-carousel" style={{ justifyContent: 'center' }}>
+            {projects.map(project => (
+              <ProjectCard key={project.id} project={project} onClick={setSelectedProject} />
+            ))}
+          </div>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div className="App">
+      <Header />
+      <Hero />
+      <About />
+      <Skills />
+
+      {/* Data Science Section */}
+      <section id="ds-projects" className="section">
+        <div className="container">
+          <h2 className="section-title">Data Science Projects</h2>
+          {renderProjectSection(dsProjects)}
+        </div>
+      </section>
+
+      {/* Data Analytics Section */}
+      <section id="da-projects" className="section">
+        <div className="container">
+          <h2 className="section-title">Data Analytics Projects</h2>
+          {renderProjectSection(daProjects)}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="section contact-section">
+        <div className="container">
+          <h2 className="section-title">Let's Connect</h2>
+          <p className="contact-text">Interested in collaborating or have a question? Feel free to reach out.</p>
+          <div className="contact-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="mailto:rchavda2005@outlook.com" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <FaEnvelope /> Email Me
+            </a>
+            <a href="https://linkedin.com/in/rchavda28" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <FaLinkedin /> LinkedIn
+            </a>
+            <a href="https://github.com/rdc28" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <FaGithub /> GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal project={selectedProject} onClose={closeModal} />
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export default App;

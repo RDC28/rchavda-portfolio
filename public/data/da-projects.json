@@ -1,0 +1,40 @@
+[
+    {
+        "id": 101,
+        "title": "Sales Performance Dashboard",
+        "description": "Interactive Power BI dashboard tracking sales KPIs across regions and categories. visualizes year-over-year growth and top-performing products.",
+        "fullDescription": "Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC). Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC). Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC). Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC).",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+        "images": [
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+        ],
+        "tags": [
+            "Power BI",
+            "SQL",
+            "Data Visualization",
+            "DAX"
+        ],
+        "liveLink": "https://app.powerbi.com",
+        "githubLink": "github.com"
+    },
+    {
+        "id": 102,
+        "title": "E-commerce Funnel Analysis",
+        "description": "Analyzed user journey data to identify drop-off points in the checkout process. Recommended UI changes that improved conversion by 8%.",
+        "fullDescription": "Used Google Analytics data to map the user conversion funnel. Created visualizations in Tableau to communicate findings to stakeholders.",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+        "images": [
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000&auto=format&fit=crop"
+        ],
+        "tags": [
+            "Tableau",
+            "Google Analytics",
+            "Excel",
+            "Marketing Analytics"
+        ],
+        "liveLink": "#",
+        "githubLink": "#"
+    }
+]

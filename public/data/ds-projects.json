@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "title": "K-Means Image Compression Web App",
+    "description": "Built a web-based image compression tool using unsupervised learning to reduce image size while preserving visual quality.",
+    "fullDescription": "This project implements an intelligent image compression system using MiniBatch K-Means clustering in LAB color space. It automatically selects optimal compression parameters using Shannon entropy and spatial variance, achieving 50–60% file size reduction without deep learning. The system is deployed as a Flask web app with real-time upload, compression, and download support.",
+    "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "Python",
+      "Unsupervised Learning",
+      "Scikit-Learn",
+      "Flask",
+      "Image Processing"
+    ],
+    "viewPostLink": "https://www.linkedin.com/feed/",
+    "githubLink": "https://github.com/RDC28"
+  },
+  {
+    "id": 2,
+    "title": "Dish Success Prediction System",
+    "description": "Developed an end-to-end machine learning system to predict whether a restaurant dish will be successful, average, or unsuccessful.",
+    "fullDescription": "This project models dish performance as a multi-class classification problem using Logistic Regression with a full preprocessing pipeline. It supports numeric and categorical features, custom dataset uploads, real-time model training, and probability-based predictions. The system is deployed as an interactive Flask web app with a clean UI and dataset validation logic.",
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "Python",
+      "Machine Learning",
+      "Logistic Regression",
+      "Flask",
+      "Data Pipelines"
+    ],
+    "liveLink": "https://resto-dishes-prediction.onrender.com",
+    "githubLink": "https://github.com/RDC28"
+  },
+  {
+    "id": 3,
+    "title": "Stock Market Prediction & Accuracy Tracker",
+    "description": "Created a stock market prediction web app that forecasts next-day prices and tracks real-world prediction accuracy over time.",
+    "fullDescription": "This Flask-based application fetches historical stock data from Yahoo Finance and trains Linear Regression models per ticker. It predicts next-day prices, logs predictions, evaluates them against actual market data, and computes detailed error metrics. The app includes daily caching, automated model cleanup, and a full accuracy analytics dashboard.",
+    "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "tags": [
+      "Python",
+      "Flask",
+      "Scikit-Learn",
+      "Finance",
+      "Time Series"
+    ],
+    "liveLink": "https://rcstocks.onrender.com",
+    "githubLink": "https://github.com/RDC28"
+  }
+]

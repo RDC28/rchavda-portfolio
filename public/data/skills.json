@@ -1,0 +1,46 @@
+[
+    {
+        "category": "Machine Learning",
+        "skills": [
+            "Scikit-Learn",
+            "TensorFlow",
+            "Keras",
+            "Supervised Learning",
+            "Unsupervised Learning",
+            "Reinforcement Learning"
+        ]
+    },
+    {
+        "category": "Data Analysis",
+        "skills": [
+            "Pandas",
+            "NumPy",
+            "Matplotlib",
+            "Seaborn",
+            "Exploratory Data Analysis (EDA)",
+            "Statistical Testing"
+        ]
+    },
+    {
+        "category": "Tools & Platforms",
+        "skills": [
+            "Git",
+            "Docker",
+            "AWS",
+            "Jupyter",
+            "SQL",
+            "Tableau",
+            "Power BI"
+        ]
+    },
+    {
+        "category": "Programming",
+        "skills": [
+            "Python",
+            "R",
+            "SQL",
+            "JavaScript",
+            "HTML/CSS"
+        ]
+    }
+]
