@@ -568,11 +568,6 @@ h6 {
     display: none;
     /* Hide section arrows on mobile, swipe is better */
   }
-
-  /* Fix card height for mobile */
-  .card-image-wrapper {
-    height: 200px;
-  }
 }
 
 .modal-content {
@@ -954,12 +949,6 @@ h6 {
     overflow-y: visible;
     /* Let the modal-content scroll */
     max-height: none;
-  }
-
-  .modal-description {
-    max-height: none;
-    overflow-y: visible;
-    padding-right: 0;
   }
 }
 
