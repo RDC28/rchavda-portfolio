@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaGithub } from 'react-icons/fa';
 
 const Hero = () => {
     // Animation variants for the line mask effect
@@ -66,7 +67,7 @@ const Hero = () => {
                         <motion.div className="hero-buttons" variants={itemVariants}>
                             <a href="#ds-projects" className="btn-primary" onClick={(e) => handleScrollLink(e, '#ds-projects')}>View Projects</a>
                             <a href="https://github.com/rdc28" target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                                <i className="fab fa-github"></i> GitHub
+                                <FaGithub style={{ marginRight: '8px' }} /> GitHub
                             </a>
                         </motion.div>
                     </div>

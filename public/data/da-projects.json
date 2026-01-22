@@ -1,40 +1,130 @@
 [
     {
         "id": 101,
-        "title": "Sales Performance Dashboard",
-        "description": "Interactive Power BI dashboard tracking sales KPIs across regions and categories. visualizes year-over-year growth and top-performing products.",
-        "fullDescription": "Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC). Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC). Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC). Designed and built a comprehensive dashboard for the sales team. It pulls data from SQL Server, cleans it using Power Query, and presents metrics like Monthly Recurring Revenue (MRR) and Customer Acquisition Cost (CAC).",
-        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+        "title": "Movie Revenue Analysis Dashboard",
+        "description": "Excel dashboard analyzing top-rated movies using ratings, votes, revenue, duration, and genre-based trends.",
+        "fullDescription": "This was my first analytics dashboard, built in Excel using the Top 1000 movies dataset from IMDb. The data was cleaned using Power Query by handling missing values, correcting inconsistent entries, and creating custom columns for genre-level analysis. The dashboard is structured into three pages: a Home page highlighting top-rated movies across key metrics, a Genre page visualizing trends and comparisons across movie genres with slicers and timeline filters, and a Timeline page showing how major metrics evolved over the years. Pivot tables were used extensively in the backend to drive all visuals. The focus of this project was learning core dashboard fundamentals, data cleaning, and interactive filtering in Excel.",
+        "image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop",
         "images": [
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+            "/img/movie_analysis_dashboard/1.jpg",
+            "/img/movie_analysis_dashboard/2.jpg",
+            "/img/movie_analysis_dashboard/3.jpg"
         ],
         "tags": [
-            "Power BI",
-            "SQL",
-            "Data Visualization",
-            "DAX"
+            "Excel",
+            "Power Query",
+            "Pivot Tables",
+            "Data Visualization"
         ],
-        "liveLink": "https://app.powerbi.com",
-        "githubLink": "github.com"
+        "viewPostLink": "https://www.linkedin.com/posts/rchavda28_made-this-excel-dashboard-a-while-ago-kinda-activity-7408896018114875392-1SM1?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD9KVJsBMzczG0LKyUBDEQJIae0XTFg9Tfs",
+        "githubLink": "https://github.com/RDC28/da-notes/blob/main/Excel/Dashboards/movie_dashboard_excel.xlsx"
     },
     {
         "id": 102,
-        "title": "E-commerce Funnel Analysis",
-        "description": "Analyzed user journey data to identify drop-off points in the checkout process. Recommended UI changes that improved conversion by 8%.",
-        "fullDescription": "Used Google Analytics data to map the user conversion funnel. Created visualizations in Tableau to communicate findings to stakeholders.",
-        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+        "title": "Retail Inventory Dashboard",
+        "description": "Excel dashboard analyzing sales, inventory, customers, and logistics using realistically generated retail data.",
+        "fullDescription": "This Excel dashboard was built using a fully synthetic retail inventory dataset generated with Python and the Faker library. Around 2000 rows of data were created with controlled parameters to ensure realistic and logical value ranges. The dashboard includes multiple pages: a landing page for navigation, Sales Overview for revenue-focused insights, Product & Category analysis to identify best-selling products and category trends, Customer & Regional Analysis for segment and city-level performance, and Operations & Logistics to analyze delivery times, returns, and internal efficiency. Each page uses its own slicers and timelines connected via report-level controls. This project strengthened my skills in Excel formulas, lookups, Power Query, dashboard navigation, and multi-page report design.",
+        "image": "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1000&auto=format&fit=crop",
         "images": [
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000&auto=format&fit=crop"
+            "/img/retail_inventory_dashboard/1.jpg",
+            "/img/retail_inventory_dashboard/2.jpg",
+            "/img/retail_inventory_dashboard/3.jpg",
+            "/img/retail_inventory_dashboard/4.jpg",
+            "/img/retail_inventory_dashboard/5.jpg"
+        ],
+        "tags": [
+            "Excel",
+            "Power Query",
+            "Data Modeling",
+            "Dashboard Design"
+        ],
+        "viewPostLink": "https://www.linkedin.com/posts/rchavda28_and-well-this-was-my-second-dashboard-in-activity-7408903503190097920-a-0-?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD9KVJsBMzczG0LKyUBDEQJIae0XTFg9Tfs",
+        "githubLink": "https://github.com/RDC28/da-notes/blob/main/Excel/Dashboards/retail_dashboard_excel.xlsx"
+    },
+    {
+        "id": 103,
+        "title": "Smart City Analytics Dashboard",
+        "description": "Tableau dashboard visualizing urban metrics like traffic, pollution, energy usage, and public services.",
+        "fullDescription": "This Tableau dashboard analyzes a synthetic smart city dataset generated using Python and Faker, covering population, traffic, pollution, energy consumption, and public services. The report is structured into four interactive pages: City Overview, Traffic & Safety, Energy & Utilities, and Public Services & Quality of Life. Each page includes KPI cards, trend charts, breakdowns by zone, and interactive filters for year and month that work independently. Navigation buttons were implemented to improve usability and give the dashboard an application-like feel. The project focused heavily on data structuring, calculated fields, and designing consistent interactive layouts within Tableau.",
+        "image": "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1000&auto=format&fit=crop",
+        "images": [
+            "/img/smart_city_dashboard/1.jpg",
+            "/img/smart_city_dashboard/2.jpg",
+            "/img/smart_city_dashboard/3.jpg",
+            "/img/smart_city_dashboard/4.jpg"
         ],
         "tags": [
             "Tableau",
-            "Google Analytics",
-            "Excel",
-            "Marketing Analytics"
+            "Calculated Fields",
+            "Data Visualization",
+            "Urban Analytics"
         ],
-        "liveLink": "#",
-        "githubLink": "#"
+        "viewPostLink": "https://www.linkedin.com/posts/rchavda28_so-this-is-my-second-tableau-dashboard-and-activity-7414663363634528256-ZWGN?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD9KVJsBMzczG0LKyUBDEQJIae0XTFg9Tfs",
+        "githubLink": "https://github.com/RDC28/da-notes/blob/main/Tableau/Dashboards/smart_city_dashboard.twbx"
+    },
+    {
+        "id": 104,
+        "title": "E-Commerce Analytics Dashboard",
+        "description": "Tableau dashboard analyzing customer behavior, sales performance, geographic trends, and engagement.",
+        "fullDescription": "This was my first Tableau dashboard, built using synthetic e-commerce customer and order data generated with Python and Faker. The dashboard is divided into four pages: Customer Overview, Sales & Order Performance, Geographic Insights, and Engagement & Satisfaction. It visualizes metrics such as revenue trends, order volume, customer demographics, delivery performance, returns, and satisfaction scores. Each page includes interactive filters that allow users to drill down by region, time period, and product category. This project helped me transition from Excel to Tableau and develop a better understanding of dashboard structuring, interactivity, and multi-perspective analysis.",
+        "image": "https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=2010&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "images": [
+            "/img/ecommerce_dashboard/1.jpg",
+            "/img/ecommerce_dashboard/2.jpg",
+            "/img/ecommerce_dashboard/3.jpg",
+            "/img/ecommerce_dashboard/4.jpg"
+        ],
+        "tags": [
+            "Tableau",
+            "E-Commerce",
+            "Customer Analytics",
+            "Data Visualization"
+        ],
+        "viewPostLink": "https://www.linkedin.com/posts/rchavda28_so-this-is-my-first-tableau-dashboard-and-activity-7414305308048752641-d2ez?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD9KVJsBMzczG0LKyUBDEQJIae0XTFg9Tfs",
+        "githubLink": "https://github.com/RDC28/da-notes/blob/main/Tableau/Dashboards/e_commerce_dashboard.twbx"
+    },
+    {
+        "id": 105,
+        "title": "Gaming App Analytics Dashboard",
+        "description": "Power BI dashboard analyzing user engagement, monetization, sessions, and retention in a gaming app.",
+        "fullDescription": "This Power BI dashboard analyzes user behavior and monetization patterns for a gaming application using synthetic data generated with Python and Faker. The report is structured into five pages covering user engagement, session analytics, financial performance, achievements, and deep-dive retention analysis. It includes KPIs such as session duration, in-game revenue, purchases, achievements, and user journeys. Interactive navigation icons and cross-filtering are used extensively. The project focused on data modeling, Power Query transformations, and DAX calculations while emphasizing UI consistency and storytelling across pages.",
+        "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+        "images": [
+            "/img/gaming_app_dashboard/1.jpg",
+            "/img/gaming_app_dashboard/2.jpg",
+            "/img/gaming_app_dashboard/3.jpg",
+            "/img/gaming_app_dashboard/4.jpg",
+            "/img/gaming_app_dashboard/5.jpg"
+        ],
+        "tags": [
+            "Power BI",
+            "DAX",
+            "Power Query",
+            "User Analytics"
+        ],
+        "viewPostLink": "https://www.linkedin.com/posts/rchavda28_so-this-is-my-first-power-bi-dashboard-and-activity-7415029860168863744-O8Lu?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD9KVJsBMzczG0LKyUBDEQJIae0XTFg9Tfs",
+        "githubLink": "https://github.com/RDC28/da-notes/blob/main/PowerBI/Dashboards/gaming_dashboard_bi.pbix"
+    },
+    {
+        "id": 106,
+        "title": "YouTube Analytics Dashboard",
+        "description": "Power BI dashboard providing real-time YouTube channel and video performance analytics using live API data.",
+        "fullDescription": "This Power BI dashboard analyzes live YouTube channel data fetched via the YouTube Analytics v3 API. A custom Flask-based web API was built and deployed to retrieve channel statistics and video-level performance data dynamically, allowing the dashboard to refresh for any channel by changing a parameter. The report includes pages for Channel Overview, Video Performance, Geographic Reach, and Top Videos Snapshot. While geographic data is partially synthetic due to API limitations, all other metrics are real-time. This project demonstrates API integration, parameterized data sources, and real-world analytics use cases, making it the most production-ready dashboard I’ve built so far.",
+        "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
+        "images": [
+            "/img/yt_analytics_dashboard/1.jpg",
+            "/img/yt_analytics_dashboard/2.jpg",
+            "/img/yt_analytics_dashboard/3.jpg",
+            "/img/yt_analytics_dashboard/4.jpg",
+            "/img/yt_analytics_dashboard/5.jpg"
+        ],
+        "tags": [
+            "Power BI",
+            "API Integration",
+            "Python",
+            "Real-Time Analytics"
+        ],
+        "viewPostLink": "https://www.linkedin.com/posts/rchavda28_so-this-is-my-second-power-bi-dashboard-and-activity-7415392063674023936--4Dg?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD9KVJsBMzczG0LKyUBDEQJIae0XTFg9Tfs",
+        "githubLink": "https://github.com/RDC28/da-notes/blob/main/PowerBI/Dashboards/youtubex_dashboard_bi.pbix"
     }
 ]

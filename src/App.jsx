@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
@@ -9,13 +9,27 @@ import ProjectModal from './components/ProjectModal';
 import Footer from './components/Footer';
 import About from './components/About';
 import Skills from './components/Skills';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
   const [dsProjects, setDsProjects] = useState([]);
   const [daProjects, setDaProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
+    // Check mobile state
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    window.addEventListener('resize', checkMobile);
+
     // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
       duration: 1.2,
@@ -37,21 +51,33 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    // Fetch data
-    fetch('/data/ds-projects.json')
-      .then(response => response.json())
-      .then(data => setDsProjects(data))
-      .catch(error => console.error('Error fetching DS projects:', error));
-
-    fetch('/data/da-projects.json')
-      .then(response => response.json())
-      .then(data => setDaProjects(data))
-      .catch(error => console.error('Error fetching DA projects:', error));
+    // Fetch data using Promise.all to ensure both are ready
+    Promise.all([
+      fetch('/data/ds-projects.json').then(res => res.json()),
+      fetch('/data/da-projects.json').then(res => res.json())
+    ]).then(([dsData, daData]) => {
+      setDsProjects(dsData);
+      setDaProjects(daData);
+      setDataLoaded(true);
+    }).catch(error => console.error('Error fetching projects:', error));
 
     return () => {
       lenis.destroy();
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  // Gather all images for preloading
+  const allImages = useMemo(() => {
+    if (!dataLoaded) return [];
+    const projects = [...dsProjects, ...daProjects];
+    let images = [];
+    projects.forEach(p => {
+      if (p.image) images.push(p.image);
+      if (p.images) images.push(...p.images);
+    });
+    return images;
+  }, [dataLoaded, dsProjects, daProjects]);
 
   const openModal = (project) => {
     setSelectedProject(project);
@@ -62,7 +88,8 @@ function App() {
   };
 
   const renderProjectSection = (projects) => {
-    const isInfinite = projects.length > 3;
+    // Infinite threshold: > 1 for mobile, > 3 for desktop
+    const isInfinite = isMobile ? projects.length > 1 : projects.length > 3;
 
     if (isInfinite) {
       // Infinite Carousel
@@ -85,7 +112,7 @@ function App() {
         </div>
       );
     } else {
-      // Static Centered Horizontal Layout (for <= 3 items)
+      // Static Centered Horizontal Layout (for <= threshold items)
       // Uses the same horizontal layout but centered and without arrows/looping
       return (
         <div className="projects-carousel-container">
@@ -101,6 +128,15 @@ function App() {
 
   return (
     <div className="App">
+      <AnimatePresence>
+        {isLoading && dataLoaded && (
+          <LoadingScreen
+            images={allImages}
+            onComplete={() => setIsLoading(false)}
+          />
+        )}
+      </AnimatePresence>
+
       <Header />
       <Hero />
       <About />
