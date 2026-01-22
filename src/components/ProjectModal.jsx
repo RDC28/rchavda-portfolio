@@ -6,9 +6,18 @@ const ProjectModal = ({ project, onClose }) => {
         document.body.style.overflow = 'hidden';
         if (window.lenis) window.lenis.stop(); // Stop Lenis scrolling
 
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'ArrowLeft') prevImage(e);
+            if (e.key === 'ArrowRight') nextImage(e);
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
         return () => {
             document.body.style.overflow = '';
             if (window.lenis) window.lenis.start(); // Resume Lenis scrolling
+            window.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
 
