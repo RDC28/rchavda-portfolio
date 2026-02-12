@@ -160,6 +160,9 @@ function App() {
         <span className="void-particles"></span>
         <span className="void-fog"></span>
         <span className="void-vignette"></span>
+        <span className="bg-orb orb-1"></span>
+        <span className="bg-orb orb-2"></span>
+        <span className="bg-grid"></span>
       </div>
 
       <Header />

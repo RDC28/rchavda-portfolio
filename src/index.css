@@ -1040,6 +1040,7 @@ h6 {
   --pointer-y: 0;
 }
 
+/* --- UI refresh enhancements --- */
 #root {
   max-width: 100%;
   margin: 0;
@@ -1242,6 +1243,47 @@ body {
   95% { opacity: 0.9; filter: saturate(1.3); }
 }
 
+.bg-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: drift 16s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -120px;
+  background: radial-gradient(circle at 30% 30%, #b45eff 0%, #5C038C 55%, transparent 70%);
+}
+
+.orb-2 {
+  width: 380px;
+  height: 380px;
+  right: -140px;
+  top: 35%;
+  background: radial-gradient(circle at 65% 35%, #2ec9ff 0%, #5C038C 55%, transparent 70%);
+  animation-delay: -7s;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 15%, transparent 75%);
+  opacity: 0.35;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(20px, -20px, 0) scale(1.08); }
+}
+
 .header {
   mix-blend-mode: normal;
   color: var(--text-primary);
@@ -1259,6 +1301,19 @@ body {
 
 .nav a {
   color: rgba(247, 241, 222, 0.9);
+  padding: 20px 0;
+}
+
+.header-container {
+  background: rgba(16, 16, 16, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 12px 24px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+.nav a {
   position: relative;
 }
 
@@ -1270,6 +1325,7 @@ body {
   left: 0;
   bottom: -6px;
   background: var(--accent-color);
+  background: var(--text-primary);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.25s ease;
@@ -1292,6 +1348,9 @@ body {
   93% { opacity: 0.87; }
   94% { opacity: 0.97; }
   95% { opacity: 0.9; }
+  background: linear-gradient(120deg, #ffffff 20%, #d598ff 55%, #8de1ff 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .section {
@@ -1307,6 +1366,10 @@ body {
   border-radius: 24px;
   border: 1px solid rgba(216, 178, 102, 0.18);
   background: linear-gradient(165deg, rgba(216, 178, 102, 0.05), rgba(98, 247, 255, 0));
+  inset: 18px 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
   z-index: -1;
 }
 
@@ -1405,6 +1468,33 @@ body {
 }
 
 
+  text-shadow: 0 10px 35px rgba(92, 3, 140, 0.4);
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 16px;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(157, 78, 221, 0.8);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.card-image-wrapper {
+  border-radius: 12px;
+}
+
+.skill-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  border-radius: 16px;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 .btn-primary,
 .btn-secondary {
   border-radius: 999px;
@@ -1442,6 +1532,16 @@ body {
     transform: none;
   }
 
+.contact-section {
+  background: radial-gradient(circle at top, rgba(92, 3, 140, 0.2), transparent 65%);
+}
+
+.footer {
+  background: rgba(11, 11, 11, 0.75);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
   .header-container {
     border-radius: 16px;
   }
