@@ -44,7 +44,7 @@ const About = () => {
                             <motion.div
                                 className="data-line"
                                 animate={{
-                                    background: isActive ? 'linear-gradient(90deg, transparent, #00f0ff, transparent)' : 'linear-gradient(90deg, transparent, #5C038C, transparent)'
+                                    background: isActive ? 'linear-gradient(90deg, transparent, #ffe6a8, transparent)' : 'linear-gradient(90deg, transparent, #d6b36a, transparent)'
                                 }}
                             />
                         </div>
