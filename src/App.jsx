@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
@@ -137,6 +137,12 @@ function App() {
         )}
       </AnimatePresence>
 
+      <div className="app-background" aria-hidden="true">
+        <span className="bg-orb orb-1"></span>
+        <span className="bg-orb orb-2"></span>
+        <span className="bg-grid"></span>
+      </div>
+
       <Header />
       <Hero />
       <About />
@@ -163,14 +169,14 @@ function App() {
         <div className="container">
           <h2 className="section-title">Let's Connect</h2>
           <p className="contact-text">Interested in collaborating or have a question? Feel free to reach out.</p>
-          <div className="contact-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:rchavda2005@outlook.com" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="contact-buttons">
+            <a href="mailto:rchavda2005@outlook.com" className="btn-primary contact-btn">
               <FaEnvelope /> Email Me
             </a>
-            <a href="https://linkedin.com/in/rchavda28" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <a href="https://linkedin.com/in/rchavda28" target="_blank" rel="noopener noreferrer" className="btn-secondary contact-btn">
               <FaLinkedin /> LinkedIn
             </a>
-            <a href="https://github.com/rdc28" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <a href="https://github.com/rdc28" target="_blank" rel="noopener noreferrer" className="btn-secondary contact-btn">
               <FaGithub /> GitHub
             </a>
           </div>
