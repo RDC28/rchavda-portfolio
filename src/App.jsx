@@ -61,9 +61,19 @@ function App() {
       setDataLoaded(true);
     }).catch(error => console.error('Error fetching projects:', error));
 
+    const handlePointerMove = (event) => {
+      const x = (event.clientX / window.innerWidth - 0.5) * 2;
+      const y = (event.clientY / window.innerHeight - 0.5) * 2;
+      document.documentElement.style.setProperty('--pointer-x', x.toFixed(3));
+      document.documentElement.style.setProperty('--pointer-y', y.toFixed(3));
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+
     return () => {
       lenis.destroy();
       window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
 
