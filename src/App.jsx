@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
@@ -61,9 +61,19 @@ function App() {
       setDataLoaded(true);
     }).catch(error => console.error('Error fetching projects:', error));
 
+    const handlePointerMove = (event) => {
+      const x = (event.clientX / window.innerWidth - 0.5) * 2;
+      const y = (event.clientY / window.innerHeight - 0.5) * 2;
+      document.documentElement.style.setProperty('--pointer-x', x.toFixed(3));
+      document.documentElement.style.setProperty('--pointer-y', y.toFixed(3));
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+
     return () => {
       lenis.destroy();
       window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
 
@@ -137,6 +147,19 @@ function App() {
         )}
       </AnimatePresence>
 
+      <div className="app-background" aria-hidden="true">
+        <span className="spotlight-bulb"></span>
+        <span className="spotlight-cone"></span>
+        <span className="spotlight-floor"></span>
+        <span className="void-grid grid-deep"></span>
+        <span className="void-grid grid-far"></span>
+        <span className="void-grid grid-near"></span>
+        <span className="ambient-dust"></span>
+        <span className="void-particles"></span>
+        <span className="void-fog"></span>
+        <span className="void-vignette"></span>
+      </div>
+
       <Header />
       <Hero />
       <About />
@@ -163,14 +186,14 @@ function App() {
         <div className="container">
           <h2 className="section-title">Let's Connect</h2>
           <p className="contact-text">Interested in collaborating or have a question? Feel free to reach out.</p>
-          <div className="contact-buttons" style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:rchavda2005@outlook.com" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="contact-buttons">
+            <a href="mailto:rchavda2005@outlook.com" className="btn-primary contact-btn">
               <FaEnvelope /> Email Me
             </a>
-            <a href="https://linkedin.com/in/rchavda28" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <a href="https://linkedin.com/in/rchavda28" target="_blank" rel="noopener noreferrer" className="btn-secondary contact-btn">
               <FaLinkedin /> LinkedIn
             </a>
-            <a href="https://github.com/rdc28" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <a href="https://github.com/rdc28" target="_blank" rel="noopener noreferrer" className="btn-secondary contact-btn">
               <FaGithub /> GitHub
             </a>
           </div>
