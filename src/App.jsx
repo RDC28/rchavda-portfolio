@@ -148,16 +148,9 @@ function App() {
       </AnimatePresence>
 
       <div className="app-background" aria-hidden="true">
-        <span className="spotlight-bulb"></span>
-        <span className="spotlight-cone"></span>
-        <span className="spotlight-floor"></span>
-        <span className="void-grid grid-deep"></span>
-        <span className="void-grid grid-far"></span>
-        <span className="void-grid grid-near"></span>
-        <span className="ambient-dust"></span>
-        <span className="void-particles"></span>
-        <span className="void-fog"></span>
-        <span className="void-vignette"></span>
+        <span className="bg-orb orb-1"></span>
+        <span className="bg-orb orb-2"></span>
+        <span className="bg-grid"></span>
       </div>
 
       <Header />
