@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { AnimatePresence } from 'framer-motion';
-import Lenis from 'lenis';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProjectCard from './components/ProjectCard';
@@ -15,43 +14,11 @@ function App() {
   const [dsProjects, setDsProjects] = useState([]);
   const [daProjects, setDaProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
-    // Check mobile state
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    // Initial check
-    checkMobile();
-
-    window.addEventListener('resize', checkMobile);
-
-    // Initialize Lenis for smooth scrolling
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
-
-    window.lenis = lenis;
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Fetch data using Promise.all to ensure both are ready
     Promise.all([
       fetch('/data/ds-projects.json').then(res => res.json()),
       fetch('/data/da-projects.json').then(res => res.json())
@@ -60,24 +27,16 @@ function App() {
       setDaProjects(daData);
       setDataLoaded(true);
     }).catch(error => console.error('Error fetching projects:', error));
-
-    const handlePointerMove = (event) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 2;
-      const y = (event.clientY / window.innerHeight - 0.5) * 2;
-      document.documentElement.style.setProperty('--pointer-x', x.toFixed(3));
-      document.documentElement.style.setProperty('--pointer-y', y.toFixed(3));
-    };
-
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-
-    return () => {
-      lenis.destroy();
-      window.removeEventListener('resize', checkMobile);
-      window.removeEventListener('pointermove', handlePointerMove);
-    };
   }, []);
 
-  // Gather all images for preloading
+  // 1s of darkness after loading screen exits, then trigger entrance
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => setEntered(true), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
   const allImages = useMemo(() => {
     if (!dataLoaded) return [];
     const projects = [...dsProjects, ...daProjects];
@@ -89,55 +48,12 @@ function App() {
     return images;
   }, [dataLoaded, dsProjects, daProjects]);
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-  };
-
   const closeModal = () => {
     setSelectedProject(null);
   };
 
-  const renderProjectSection = (projects) => {
-    // Infinite threshold: > 1 for mobile, > 3 for desktop
-    const isInfinite = isMobile ? projects.length > 1 : projects.length > 3;
-
-    if (isInfinite) {
-      // Infinite Carousel
-      return (
-        <div className="projects-carousel-container">
-          <button className="section-nav-btn prev" onClick={(e) => {
-            e.target.parentElement.querySelector('.projects-carousel').scrollBy({ left: -400, behavior: 'smooth' });
-          }}>&#10094;</button>
-
-          <div className="projects-carousel">
-            {/* Render list multiple times for "infinite" feel */}
-            {[...projects, ...projects, ...projects, ...projects].map((project, index) => (
-              <ProjectCard key={`${project.id}-${index}`} project={project} onClick={setSelectedProject} />
-            ))}
-          </div>
-
-          <button className="section-nav-btn next" onClick={(e) => {
-            e.target.parentElement.querySelector('.projects-carousel').scrollBy({ left: 400, behavior: 'smooth' });
-          }}>&#10095;</button>
-        </div>
-      );
-    } else {
-      // Static Centered Horizontal Layout (for <= threshold items)
-      // Uses the same horizontal layout but centered and without arrows/looping
-      return (
-        <div className="projects-carousel-container">
-          <div className="projects-carousel" style={{ justifyContent: 'center' }}>
-            {projects.map(project => (
-              <ProjectCard key={project.id} project={project} onClick={setSelectedProject} />
-            ))}
-          </div>
-        </div>
-      );
-    }
-  };
-
   return (
-    <div className="App">
+    <div className={`App ${entered ? 'entered' : ''}`}>
       <AnimatePresence>
         {isLoading && dataLoaded && (
           <LoadingScreen
@@ -147,26 +63,24 @@ function App() {
         )}
       </AnimatePresence>
 
-      <div className="app-background" aria-hidden="true">
+      {/* Fixed void background — grid + vignette (always visible) */}
+      <div className="void-bg" aria-hidden="true">
+        <span className="void-grid"></span>
+        <span className="void-vignette"></span>
+      </div>
+
+      {/* Spotlight — anchored to the top, scrolls with content */}
+      <div className="spotlight-anchor" aria-hidden="true">
         <span className="spotlight-bulb"></span>
         <span className="spotlight-cone"></span>
         <span className="spotlight-floor"></span>
-        <span className="void-grid grid-ultra"></span>
-        <span className="void-grid grid-deep"></span>
-        <span className="void-grid grid-far"></span>
-        <span className="void-grid grid-mid"></span>
-        <span className="void-grid grid-near"></span>
-        <span className="ambient-dust"></span>
-        <span className="void-particles"></span>
-        <span className="void-fog"></span>
-        <span className="void-vignette"></span>
-        <span className="bg-orb orb-1"></span>
-        <span className="bg-orb orb-2"></span>
-        <span className="bg-grid"></span>
+        <span className="spotlight-dust"></span>
       </div>
 
-      <Header />
-      <Hero />
+      <Header entered={entered} />
+
+      <Hero entered={entered} />
+
       <About />
       <Skills />
 
@@ -174,7 +88,11 @@ function App() {
       <section id="ds-projects" className="section">
         <div className="container">
           <h2 className="section-title">Data Science Projects</h2>
-          {renderProjectSection(dsProjects)}
+          <div className="projects-grid">
+            {dsProjects.map(project => (
+              <ProjectCard key={project.id} project={project} onClick={setSelectedProject} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -182,7 +100,11 @@ function App() {
       <section id="da-projects" className="section">
         <div className="container">
           <h2 className="section-title">Data Analytics Projects</h2>
-          {renderProjectSection(daProjects)}
+          <div className="projects-grid">
+            {daProjects.map(project => (
+              <ProjectCard key={project.id} project={project} onClick={setSelectedProject} />
+            ))}
+          </div>
         </div>
       </section>
 

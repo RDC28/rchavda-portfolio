@@ -1,82 +1,77 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import RandomWord from './RandomWord';
 
 const About = () => {
-    const [isActive, setIsActive] = React.useState(false);
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+
+    // Faster materialization for the about section
+    const MIN = 0.1;
+    const MAX = 1.0;
 
     return (
-        <section id="about-me" className="section about-section">
+        <section id="about-me" className="section about-section" ref={containerRef}>
             <div className="container about-container">
-                <motion.div
-                    className="about-graphic-container"
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    onClick={() => setIsActive(!isActive)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <motion.div
-                        className="graphic-orb"
-                        animate={{
-                            filter: isActive ? 'hue-rotate(180deg) blur(60px)' : 'hue-rotate(0deg) blur(60px)',
-                            scale: isActive ? 1.2 : 1
-                        }}
-                        transition={{ duration: 0.5 }}
-                    />
-                    <motion.div
-                        className="graphic-glass-card"
-                        animate={{
-                            y: isActive ? [0, -10, 0] : [0, -20, 0],
-                            rotate: isActive ? [0, 10, 0] : [0, 5, 0],
-                            scale: isActive ? 1.05 : 1
-                        }}
-                        transition={{
-                            duration: isActive ? 3 : 6,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    >
-                        <div className="glass-content">
-                            <motion.div className="data-point p1" animate={isActive ? { top: '20%', left: '50%' } : {}} />
-                            <motion.div className="data-point p2" animate={isActive ? { top: '80%', left: '20%' } : {}} />
-                            <motion.div className="data-point p3" animate={isActive ? { top: '80%', left: '80%' } : {}} />
-                            <motion.div
-                                className="data-line"
-                                animate={{
-                                    background: isActive ? 'linear-gradient(90deg, transparent, #ffe6a8, transparent)' : 'linear-gradient(90deg, transparent, #d6b36a, transparent)'
-                                    background: isActive ? 'linear-gradient(90deg, transparent, #81f4ff, transparent)' : 'linear-gradient(90deg, transparent, #4bd9ff, transparent)'
-                                }}
+                <div className="about-content">
+                    <h2 className="section-title left-align">
+                        <RandomWord text="About Me" minDelay={0} maxDelay={0.4} trigger={isInView} />
+                    </h2>
+
+                    <p className="about-text">
+                        <RandomWord
+                            text="Hello! I'm "
+                            minDelay={MIN}
+                            maxDelay={MAX}
+                            trigger={isInView}
+                        />
+                        <span className="highlight" style={{ display: 'inline-block' }}>
+                            <RandomWord
+                                text="Rohit Chavda"
+                                minDelay={MIN}
+                                maxDelay={MAX}
+                                trigger={isInView}
                             />
-                        </div>
-                    </motion.div>
-                </motion.div>
-                <motion.div
-                    className="about-content"
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                >
-                    <h2 className="section-title left-align">About Me</h2>
-                    <p className="about-text">
-                        Hello! I'm <span className="highlight">Rohit Chavda</span>, a dedicated Data Scientist and Analyst.
-                        I specialize in turning raw data into meaningful insights and building predictive models that solve real-world problems.
-                        My journey in data involves deep diving into machine learning algorithms, statistical analysis, and interactive visualizations.
+                        </span>
+                        <RandomWord
+                            text=", a dedicated Data Scientist and Analyst."
+                            minDelay={MIN}
+                            maxDelay={MAX}
+                            trigger={isInView}
+                        />
                     </p>
+
                     <p className="about-text">
-                        I am passionate about continuous learning and keeping up with the latest trends in AI and Data Science.
-                        Whether it's cleaning messy datasets or deploying complex models, I enjoy every step of the data pipeline.
+                        <RandomWord
+                            text="I specialize in turning raw data into meaningful insights and building predictive models that solve real-world problems. My journey in data involves deep diving into machine learning algorithms, statistical analysis, and interactive visualizations."
+                            minDelay={MIN + 0.2}
+                            maxDelay={MAX + 0.4}
+                            trigger={isInView}
+                        />
                     </p>
-                    <div className="about-actions">
+
+                    <p className="about-text">
+                        <RandomWord
+                            text="I am passionate about continuous learning and keeping up with the latest trends in AI and Data Science. Whether it's cleaning messy datasets or deploying complex models, I enjoy every step of the data pipeline."
+                            minDelay={MIN + 0.4}
+                            maxDelay={MAX + 0.8}
+                            trigger={isInView}
+                        />
+                    </p>
+
+                    <motion.div
+                        className="about-actions"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ delay: MAX + 0.5, duration: 0.6 }}
+                    >
                         <a href="#contact" className="btn-primary" onClick={(e) => {
                             e.preventDefault();
                             const target = document.querySelector('#contact');
-                            if (target && window.lenis) window.lenis.scrollTo(target);
-                            else if (target) target.scrollIntoView({ behavior: 'smooth' });
+                            if (target) target.scrollIntoView({ behavior: 'smooth' });
                         }}>Contact Me</a>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
             </div>
         </section>
     );
